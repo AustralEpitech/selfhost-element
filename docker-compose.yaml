@@ -1,0 +1,37 @@
+---
+version: "3.7"
+
+services:
+  install_site:
+    build: install_site
+    ports:
+      - "80:80"
+    environment:
+      - BASE_URL=$BASE_URL
+      - EMAIL=$EMAIL
+    volumes:
+      - ./nginx.conf:/web/element.conf
+      - sites-availables:/sites-availables/
+      - certs:/etc/letsencrypt/
+
+  sonarr:
+    build: vectorim/element-web
+    restart: unless-stopped
+    user: :$PUID:$PGID"
+    volumes:
+      - config:/app/config.json
+    networks:
+      - default
+      - selfhost
+
+volumes:
+  config:
+  sites-availables:
+    external: true
+  certs:
+    external: true
+
+networks:
+  default:
+  selfhost:
+    external: true
