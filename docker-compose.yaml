@@ -14,8 +14,8 @@ services:
       - sites-availables:/sites-availables/
       - certs:/etc/letsencrypt/
 
-  sonarr:
-    build: vectorim/element-web
+  element:
+    image: vectorim/element-web
     restart: unless-stopped
     user: :$PUID:$PGID"
     volumes:
