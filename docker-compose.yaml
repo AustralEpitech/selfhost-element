@@ -3,7 +3,7 @@ version: "3.7"
 
 services:
   install_site:
-    image: git.maby.dev/organization/install_site:0.1.0
+    image: git.maby.dev/organization/install_site:0.2
     ports:
       - "80:80"
     environment:
@@ -18,14 +18,11 @@ services:
     image: vectorim/element-web
     restart: unless-stopped
     user: :$PUID:$PGID"
-    volumes:
-      - config:/app/config.json
     networks:
       - default
       - selfhost
 
 volumes:
-  config:
   sites-availables:
     external: true
   certs:
