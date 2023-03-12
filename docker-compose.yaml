@@ -15,7 +15,7 @@ services:
       - certs:/etc/letsencrypt/
 
   element:
-    image: vectorim/element-web
+    build: element
     restart: unless-stopped
     user: :$PUID:$PGID"
     networks:
